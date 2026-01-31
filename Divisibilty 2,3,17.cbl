@@ -1,0 +1,43 @@
+IDENTIFICATION DIVISION.
+PROGRAM-ID. DIVISIBILITY.
+
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+
+01 WS-NUM      PIC 9(04).
+01 WS-RM2     PIC 9(02).
+01 WS-RM3     PIC 9(02).
+01 WS-RM17    PIC 9(02).
+01 WS-Q2    PIC 9(04).
+01 WS-Q3    PIC 9(04).
+01 WS-Q17   PIC 9(04).
+
+PROCEDURE DIVISION.
+
+    MOVE 1 TO WS-NUM.
+
+    PERFORM UNTIL WS-NUM > 1000
+
+        DIVIDE WS-NUM BY 2
+            GIVING WS-Q2
+            REMAINDER WS-RM2
+
+        DIVIDE WS-NUM BY 3
+            GIVING WS-Q3
+            REMAINDER WS-RM3
+
+        DIVIDE WS-NUM BY 17
+            GIVING WS-Q17
+            REMAINDER WS-RM17
+
+        IF WS-RM2 = 0
+           AND WS-RM3 = 0
+           AND WS-RM17 = 0
+            DISPLAY WS-NUM
+        END-IF
+
+        ADD 1 TO WS-NUM
+    END-PERFORM.
+
+STOP RUN.
